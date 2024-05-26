@@ -1,9 +1,12 @@
-export default function appendToEachArrayValue(array, appendString) {
-  for (const idx of array) {
-    const newString = `${appendString}${idx}`;
-    /* eslint-disable no-param-reassign */
-    array[array.indexOf(idx)] = newString;
-  }
+import getBudgetObject from './7-getBudgetObject';
 
-  return array;
+export default function getFullBudgetObject(income, gdp, capita) {
+  const budget = getBudgetObject(income, gdp, capita);
+  const fullBudget = {
+    ...budget,
+    getIncomeInDollars: (income) => `$${income}`,
+    getIncomeInEuros: (income) => `${income} euros`,
+  };
+
+  return fullBudget;
 }
